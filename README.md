@@ -1,0 +1,1 @@
+This is a collection of completed tasks in connection to IDATT1004 NTNU. These are different programs that could run on different lego ev3 creations. Task 4 and 5 where the most interesting. Task 4 consists of a line following robot that competed in a race. Task 5 is a creative project where me and my group decided to make a turret system that shoots.
