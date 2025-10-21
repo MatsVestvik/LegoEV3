@@ -11,12 +11,11 @@ x = Motor(Port.A)
 y = Motor(Port.C)
 shooter = Motor(Port.B)
 
-X_SPEED = 100 #(max speed(1000) max range(?))
-Y_SPEED = 100  #(max speed(1000) max range(800))
-SHOOTER_SPEED = 500 #(max speed(?) max range(?))
+X_SPEED = 1000 #(max speed(1000) max range(300++))
+Y_SPEED = 1000  #(max speed(1000) max range(800--))
+SHOOTER_SPEED = 500 #(max speed(1000) max range(20?))
 
-startpos = 0
-
+# functions
 def shoot(num):
     current_shoter = shooter.angle()
     shooter.run_target(SHOOTER_SPEED, 90*num + current_shoter)
@@ -28,7 +27,7 @@ def look(x_pos, y_pos):
     while not x.control.done() or not y.control.done():
         wait(10)
 
-# Return to home position
+#reset but lifts first to thow empty magasines for large capacity
 def reset():
     y.run_target(Y_SPEED, 0, wait=False)
     x.run_target(X_SPEED, 0, wait=True)
@@ -36,6 +35,7 @@ def reset():
         wait(10)
 
 
+# different tests use test() for overall test
 def testy():
     look(0,300)
     look(0,0)
@@ -55,13 +55,13 @@ def testx():
 def test():
 
     x_min, x_max = -500, 500 
-    y_min, y_max = 150, 400  
+    y_min, y_max = 50, 400  
     
     for _ in range(10):
         randx = random.randint(x_min, x_max)
         randy = random.randint(y_min, y_max)
         look(randx, randy)
-        shoot(5)
+        shoot(2)
 
 def testspin():
     look(200,300)
@@ -70,13 +70,10 @@ def testspin():
     look(-500,300)
 
 
-look(230,100)
-wait(1000)
-shoot(2)
+test()
 
 
-
-
+# always include reset for simplicity!!!!
 reset()
 
 print("Sequence complete!")
